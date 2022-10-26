@@ -147,7 +147,7 @@ Widget fields(){
         showCursor: false,
         textCapitalization: TextCapitalization.none,
         decoration: InputDecoration(
-          hintText: "Enter your Password",
+          hintText: "Enter your password",
           helperStyle: TextStyle(
             color: Colors.grey.shade600,
           ),
