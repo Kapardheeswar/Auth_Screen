@@ -1,3 +1,6 @@
+// import 'dart:html';
+
+import 'package:auth_screen/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -10,6 +13,20 @@ class signup_screen extends StatefulWidget {
 }
 
 class _signup_screenState extends State<signup_screen> {
+  bool _isvisible=false;
+  bool password_contains_8letters=false;
+  bool password_contains_one_number=false;
+  passwordchanged(String password){
+    final register= RegExp(r'[0-9]');
+      setState(() {
+        if(password.length>=8){
+          password_contains_8letters=true;
+        }
+        if(register.hasMatch(password)){
+          password_contains_one_number=true;
+        }
+      });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,10 +37,104 @@ class _signup_screenState extends State<signup_screen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               titletext(context),
-              Gap(15),
+              Gap(20),
               direct_login_buttons(),
-              Gap(15),
+              Gap(20),
               fields(),
+              Gap(20),
+              Text("Password",style:
+              TextStyle(
+                color: Colors.grey.shade50,
+                fontSize: 18,
+              ),
+              ),
+              Gap(8),
+              Text("Please create a secure password using following criteria",style: TextStyle(
+                fontSize: 15,
+                height: 1.5,
+                color: Colors.grey.shade600,
+              ),),
+              Gap(10),
+              TextFormField(
+                onChanged: (pasword)=>passwordchanged(pasword),
+                obscureText: !_isvisible,
+                showCursor: false,
+                textCapitalization: TextCapitalization.none,
+                decoration: InputDecoration(
+                  hintText: "Create Password",
+                  helperStyle: TextStyle(
+                    color: Colors.grey.shade600,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(
+                      style: BorderStyle.solid,color: Colors.grey.shade800,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide(
+                      color: Colors.pink.shade300,width: 2,
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: (){
+                      setState(() {
+                        _isvisible=!_isvisible;
+                      });
+                    },
+                    icon: _isvisible ? Icon(Icons.visibility,color: Colors.grey.shade300,):
+                    Icon(Icons.visibility_off,color: Colors.grey.shade300,),
+                  ),
+                  fillColor: Colors.grey.shade900,
+                  filled: true,
+                  contentPadding: EdgeInsets.all(15),
+                ),
+                style: TextStyle(
+                  color: Colors.grey.shade50,
+                  fontSize: 17,
+                ),
+              ),
+              Gap(13),
+              Row(
+                children: [
+                  AnimatedContainer(duration:Duration(microseconds: 500),
+                    width: 15,
+                    height: 15,
+                    decoration: BoxDecoration(
+                      color: password_contains_8letters ? Colors.pinkAccent:Colors.transparent,
+                      border: Border.all(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Center(child: Icon(Icons.check,color: Styles.colour1,size: 10,),),
+                  ),
+                  Gap(8),
+                  Text("Contains at-least 8 characters",style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey.shade400,
+                  ),)
+                ],
+              ),
+              Gap(8),
+              Row(
+                children: [
+                  AnimatedContainer(duration:Duration(microseconds: 500),
+                    width: 15,
+                    height: 15,
+                    decoration: BoxDecoration(
+                      color: password_contains_one_number ? Colors.pinkAccent:Colors.transparent,
+                      border: Border.all(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Center(child: Icon(Icons.check,color: Styles.colour1,size: 10,),),
+                  ),
+                  Gap(8),
+                  Text("Contains at-least 1 number",style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey.shade400,
+                  ),)
+                ],
+              ),
               Gap(15),
               create_account_button(),
               Gap(7),
@@ -45,8 +156,8 @@ Widget titletext(BuildContext context){
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
-          height: 40,
-          width: 35,
+          height: 50,
+          width: 40,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.shade500,
             width: 1,
@@ -69,18 +180,18 @@ Widget titletext(BuildContext context){
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_ios_new,
-              size: 20,
+              size: 25,
               color: Colors.white,
             ),
           ),
         ),
-        Gap(10),
+        Gap(12),
         RichText(
           text: TextSpan(
               text: "Sign up", style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.white,
-            fontSize: 40,
+            fontSize: 50,
           ),
               children: [TextSpan(
                   text: ".", style: TextStyle(
@@ -101,20 +212,22 @@ Widget titletext(BuildContext context){
 }
 
 Widget fields(){
+  var _isVisible=false;
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text("Name",style:
       TextStyle(
         color: Colors.grey.shade50,
+        fontSize: 18,
       )
         ,),
-      Gap(8),
+      Gap(10),
       TextFormField(
         showCursor: false,
         textCapitalization: TextCapitalization.none,
         decoration: InputDecoration(
-          hintText: "Kapardhi",
+          hintText: "jeff",
           helperStyle: TextStyle(
             color: Colors.grey.shade600,
           ),
@@ -143,6 +256,7 @@ Widget fields(){
       Text("Email",style:
       TextStyle(
         color: Colors.grey.shade50,
+        fontSize: 18,
       )
         ,),
       Gap(8),
@@ -150,44 +264,7 @@ Widget fields(){
         showCursor: false,
         textCapitalization: TextCapitalization.none,
         decoration: InputDecoration(
-          hintText: "kksk@gmail.com",
-          helperStyle: TextStyle(
-            color: Colors.grey.shade600,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
-              style: BorderStyle.solid,color: Colors.grey.shade800,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
-              color: Colors.pink.shade300,width: 2,
-            ),
-          ),
-          fillColor: Colors.grey.shade900,
-          filled: true,
-          contentPadding: EdgeInsets.all(15),
-        ),
-        style: TextStyle(
-          color: Colors.grey.shade50,
-          fontSize: 17,
-        ),
-      ),
-      Gap(20),
-      Text("Password",style:
-      TextStyle(
-        color: Colors.grey.shade50,
-      ),
-      ),
-      Gap(8),
-      TextFormField(
-        obscureText: true,
-        showCursor: false,
-        textCapitalization: TextCapitalization.none,
-        decoration: InputDecoration(
-          hintText: "Create Password",
+          hintText: "jeff@gmail.com",
           helperStyle: TextStyle(
             color: Colors.grey.shade600,
           ),
