@@ -13,23 +13,25 @@ class _signup_screenState extends State<signup_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            titletext(context),
-            Gap(15),
-            direct_login_buttons(),
-            Gap(15),
-            fields(),
-            Gap(15),
-            create_account_button(),
-            Gap(7),
-            ordivider(),
-            Gap(7),
-            login_dialouge(context),
-          ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: 25,vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              titletext(context),
+              Gap(15),
+              direct_login_buttons(),
+              Gap(15),
+              fields(),
+              Gap(15),
+              create_account_button(),
+              Gap(7),
+              ordivider(),
+              Gap(7),
+              login_dialouge(context),
+            ],
+          ),
         ),
       ),
     );
