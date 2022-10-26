@@ -20,7 +20,7 @@ class _signup_screenState extends State<signup_screen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               titletext(context),
-              Gap(14),
+              Gap(15),
               direct_login_buttons(),
               Gap(15),
               fields(),
