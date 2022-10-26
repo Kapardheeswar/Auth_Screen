@@ -1,9 +1,9 @@
 # Auth_Screen
  For TZ 
 ## Instructions
-Create a new branch and then code
+1.Create a new branch and then code
 #
-After coding send a pull request to me
+2.After coding send a pull request to me
 ## OR
 Just code and push the code..
 #
