@@ -36,12 +36,12 @@ dependencies:
   gap: ^2.0.0
 
 dev_dependencies:
-  flutter_native_splash: ^2.0.5
+#  flutter_native_splash: ^2.0.5
   flutter_test:
     sdk: flutter
-flutter_native_splash:
-  image: assets/Asset 2.png
-  color: "#000000"
+#flutter_native_splash:
+#  image: assets/Asset 2.png
+#  color: "#000000"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
