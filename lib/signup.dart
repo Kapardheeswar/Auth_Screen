@@ -19,9 +19,11 @@ class _signup_screenState extends State<signup_screen> {
   passwordchanged(String password){
     final register= RegExp(r'[0-9]');
       setState(() {
+        password_contains_8letters=false;
         if(password.length>=8){
           password_contains_8letters=true;
         }
+        password_contains_one_number=false;
         if(register.hasMatch(password)){
           password_contains_one_number=true;
         }
